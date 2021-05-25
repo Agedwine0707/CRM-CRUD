@@ -9,4 +9,7 @@ import com.dlpower.crm.pojo.User;
 public interface UserService{
     User getUser(String loginAct, String loginPwd, String ip);
 
+    User automaticLogIn(String userAct, String userPwd, String remoteAddr);
+
+    Boolean updatePwd(String id, String confirmPwd);
 }

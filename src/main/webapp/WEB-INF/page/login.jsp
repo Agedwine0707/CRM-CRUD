@@ -1,3 +1,4 @@
+<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +7,7 @@
 <script type="text/javascript" src="/static/jquery/jquery-1.11.1-min.js"></script>
 <script type="text/javascript" src="/static/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 	<script>
+		// jQuery页面加载事件
 		jQuery(function ($){
 			// 表单非空验证
 			$("#btnSubmit").click(function (){
@@ -17,27 +19,35 @@
 				if (!$("#password").val()){
 					alert("请输入密码！");
 					$("#password").focus();
+					return;
 				}
 				// 请求后台查询相关用户数据
 				$.ajax({
 					url: "/user/login",
+					type:"post",
 					data:{
 						loginAct: $("#username").val(),
 						loginPwd: $("#password").val(),
 						exemptLogin: $("#exemptCheckBox").is(':checked'),
 					},
+					// 请求成功后执行的方法
 					success :function (result){
 						if (result.success){
 							location="/workbench/index.html";
 						}
+						// 如果返回值里面有信息就打印
 						if (result.message){
 							alert(result.message);
 						}
 					}
 				})
-
-
 			})
+			// 按键事件监听，当按下enter键触发登录
+			$(document).keydown(function (event) {
+				if (event.keyCode === 13) {
+					$("#btnSubmit").click();
+				}
+			});
 
 		})
 

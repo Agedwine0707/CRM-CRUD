@@ -14,6 +14,7 @@ import java.util.Map;
  */
 @ControllerAdvice // 对Controller进行增强，可以对异常进行集中处理
 public class CRMExceptionHandler {
+
     // 当前方法可以捕获LoginException类型的异常
     @ExceptionHandler(LoginException.class)
     @ResponseBody

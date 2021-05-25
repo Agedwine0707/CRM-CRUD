@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        https://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--注解扫描-->
+    <context:component-scan base-package="com.dlpower.crm.service"/>
+
+    <!--引入数据源配置文件-->
+    <context:property-placeholder location="classpath:db.properties"/>
+
+    <!--配置druid-->
+    <bean id="datasource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="username" value="${jdbc.username}"/>
+    </bean>
+
+    <bean id="configuration" class="com.baomidou.mybatisplus.core.MybatisConfiguration">
+        <!-- 关闭mybatis的驼峰映射规则(实体类字段驼峰命名，数据表名下划线_) -->
+        <property name="mapUnderscoreToCamelCase" value="false"/>
+    </bean>
+    <bean id="globalConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig">
+        <!-- 关闭mybatisPlus Logo -->
+        <property name="banner" value="false"/>
+    </bean>
+
+
+            <!--mybatisPlusSqlSessionFactory注入 -->
+    <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
+        <property name="dataSource" ref="datasource"/>
+        <!-- 给pojo包下的所有类配置别名(类名) -->
+        <property name="typeAliasesPackage" value="com.dlpower.crm.pojo"/>
+        <!-- 使用 MybatisConfiguration -->
+        <property name="configuration" ref="configuration"/>
+        <!-- 自定义全局配置 -->
+        <property name="globalConfig" ref="globalConfig"/>
+    </bean>
+
+
+    <!-- MybatisMapper扫描器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 指定扫描的包 -->
+        <property name="basePackage" value="com.dlpower.crm.mapper"/>
+    </bean>
+
+</beans>

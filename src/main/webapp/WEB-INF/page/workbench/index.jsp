@@ -2,94 +2,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <link href="/static/jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet"/>
-    <script type="text/javascript" src="/static/jquery/jquery-1.11.1-min.js"></script>
-    <script type="text/javascript" src="/static/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/blueimp-md5/2.18.0/js/md5.js"></script>
-    <script type="text/javascript">
-
-    //页面加载完毕
-        jQuery(function ($) {
-
-            //导航中所有文本颜色为黑色
-            $(".liClass > a").css("color", "black");
-
-            //默认选中导航菜单中的第一个菜单项
-            $(".liClass:first").addClass("active");
-
-            //第一个菜单项的文字变成白色
-            $(".liClass:first > a").css("color", "white");
-
-            //给所有的菜单项注册鼠标单击事件
-            $(".liClass").click(function () {
-                //移除所有菜单项的激活状态
-                $(".liClass").removeClass("active");
-                //导航中所有文本颜色为黑色
-                $(".liClass > a").css("color", "black");
-                //当前项目被选中
-                $(this).addClass("active");
-                //当前项目颜色变成白色
-                $(this).children("a").css("color", "white");
-            });
-
-            //展示市场活动页面
-            window.open("/workbench/main/index.html", "workareaFrame");
-
-            $("#updatePwd").click(function (){
-                const oldPwd = "${sessionScope.USER.loginpwd}";
-                const oldPwd2 = md5($("#oldPwd").val());
-                const newPwd = $("#newPwd").val();
-                const confirmPwd = $("#confirmPwd").val();
-                if (oldPwd !== oldPwd2) {
-                    alert("原密码错误！");
-                    return;
-                }
-                if (!newPwd) {
-                    alert("请输入新密码！");
-                    return ;
-                }
-
-                if (!confirmPwd) {
-                    alert("请输入确认密码！");
-                    return ;
-                }
-
-                if (newPwd !== confirmPwd) {
-                    alert("两次输入的密码不一致");
-                    return;
-                }
-
-                $.ajax({
-                    url: "/user/updatePwd",
-                    type: "post",
-                    data:{
-                        confirmPwd : confirmPwd,
-                        id: "${sessionScope.USER.id}"
-                    },
-                    success: function (result){
-                        if (result.success){
-                            alert("修改成功，请重新登录");
-                        }
-                        if (result.message){
-                            alert(result.message);
-                        }
-                        // 修改密码成功后，将用户信息cookie中的信息清除并且重定向到登录
-                        window.location = "/user/signOut";
-                    }
-                })
-
-            })
-
-        });
-    // 修改密码
-    
-
-    </script>
+    <%@include file="/WEB-INF/page/common/staticFileHead.jsp" %>
+    <%@include file="/WEB-INF/page/common/changePwd.jsp" %>
 
 </head>
 <body>
-
 <!-- 我的资料 -->
 <div class="modal fade" id="myInformation" role="dialog">
     <div class="modal-dialog" role="document" style="width: 30%;">
@@ -194,7 +111,7 @@
                     <span class="glyphicon glyphicon-user"></span> ${sessionScope.USER.name} <span class="caret"></span>
                 </a>
                 <ul class="dropdown-menu">
-                    <li><a href="../settings/index.html"><span class="glyphicon glyphicon-wrench"></span> 系统设置</a></li>
+                    <li><a href="/settings/index.html"><span class="glyphicon glyphicon-wrench"></span> 系统设置</a></li>
                     <li><a href="javascript:void(0)" data-toggle="modal" data-target="#myInformation"><span
                             class="glyphicon glyphicon-file"></span> 我的资料</a></li>
                     <li><a href="javascript:void(0)" data-toggle="modal" data-target="#editPwdModal"><span
@@ -214,7 +131,7 @@
     <div id="navigation" style="left: 0px; width: 18%; position: relative; height: 100%; overflow:auto;">
 
         <ul id="no1" class="nav nav-pills nav-stacked">
-            <li class="liClass"><a href="main/index.html" target="workareaFrame"><span
+            <li class="liClass"><a href="/main/index.html" target="workareaFrame"><span
                     class="glyphicon glyphicon-home"></span> 工作台</a></li>
             <li class="liClass"><a href="javascript:void(0);" target="workareaFrame"><span
                     class="glyphicon glyphicon-tag"></span> 动态</a></li>

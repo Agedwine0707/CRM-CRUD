@@ -10,7 +10,7 @@
         http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!--注解扫描-->
-    <context:component-scan base-package="com.dlpower.crm.controller"/>
+    <context:component-scan base-package="com.dlpower.crm.web"/>
 
     <!--注解启动-->
     <mvc:annotation-driven/>
@@ -33,7 +33,7 @@
             <mvc:exclude-mapping path="/login.html"/>
             <mvc:exclude-mapping path="/user/login"/>
             <mvc:exclude-mapping path="/"/>
-            <bean class="com.dlpower.crm.controller.interceptor.LoginInterceptor"/>
+            <bean class="com.dlpower.crm.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 

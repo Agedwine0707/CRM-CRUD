@@ -1,4 +1,4 @@
-package com.dlpower.crm.controller.advice;
+package com.dlpower.crm.web.advice;
 
 import com.dlpower.crm.exception.LoginException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
+ * 对异常进行统一处理
  * @author chenlanjiang
  * @date 2021/5/24
  */

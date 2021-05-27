@@ -1,4 +1,4 @@
-package com.dlpower.crm.controller.interceptor;
+package com.dlpower.crm.web.interceptor;
 
 import com.dlpower.crm.constant.Constant;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         if (request.getSession().getAttribute(Constant.LOGIN_USER) == null) {
-            response.sendRedirect("/login.html");
+            response.sendRedirect("/");
             return false;
         }
         return true;

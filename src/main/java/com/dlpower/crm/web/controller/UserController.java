@@ -1,4 +1,4 @@
-package com.dlpower.crm.controller;
+package com.dlpower.crm.web.controller;
 
 import com.dlpower.crm.constant.Constant;
 import com.dlpower.crm.pojo.User;

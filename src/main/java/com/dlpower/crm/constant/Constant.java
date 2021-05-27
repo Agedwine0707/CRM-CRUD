@@ -1,14 +1,18 @@
 package com.dlpower.crm.constant;
 
 /**
+ * 对CRM_DEMO常量进行集中管理
+ *
  * @author chenlanjiang
  * @date 2021/5/25
  */
 public interface Constant {
+
     /**
-     * 登录的用户
+     * 登录的用户信息
      */
     String LOGIN_USER = "USER";
+
     /**
      * 存储在客户端的用户名cookie
      */

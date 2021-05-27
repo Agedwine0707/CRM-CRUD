@@ -7,7 +7,7 @@
 <script type="text/javascript">
 
 	//页面加载完毕
-	$(function(){
+	jQuery(function($){
 		
 		//导航中所有文本颜色为黑色
 		$(".liClass > a").css("color" , "black");
@@ -31,7 +31,7 @@
 		});
 		
 		//展示市场活动页面
-		window.open("type/index.html","workareaFrame");
+		window.open("/type/listType.do","workareaFrame");
 		
 	});
 	
@@ -49,8 +49,8 @@
 		<div id="navigation" style="left: 0px; width: 18%; position: relative; height: 100%; overflow:auto;">
 		
 			<ul id="no1" class="nav nav-pills nav-stacked">
-				<li class="liClass"><a href="type/index.html" target="workareaFrame"><span class="glyphicon glyphicon-book"></span> 字典类型</a></li>
-				<li class="liClass"><a href="value/index.html" target="workareaFrame"><span class="glyphicon glyphicon-list"></span> 字典值</a></li>
+				<li class="liClass"><a href="/type/listType.do" target="workareaFrame"><span class="glyphicon glyphicon-book"></span> 字典类型</a></li>
+				<li class="liClass"><a href="/value/listValue.do" target="workareaFrame"><span class="glyphicon glyphicon-list"></span> 字典值</a></li>
 			</ul>
 			
 			<!-- 分割线 -->

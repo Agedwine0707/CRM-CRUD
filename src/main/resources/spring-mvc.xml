@@ -21,9 +21,11 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
+    <mvc:resources mapping="/static/**" location="/static/" cache-period="43200"/>
+
 
     <!--静态资源处理转交给tomcat默认servlet-->
-    <mvc:default-servlet-handler/>
+    <mvc:default-servlet-handler />
 
     <!-- mvc拦截器，权限控制 -->
     <mvc:interceptors>

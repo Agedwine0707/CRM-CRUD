@@ -22,30 +22,33 @@
     </bean>
 
     <bean id="configuration" class="com.baomidou.mybatisplus.core.MybatisConfiguration">
-        <!-- 关闭mybatis的驼峰映射规则(实体类字段驼峰命名，数据表名下划线_) -->
+        <!--关闭mybatis的驼峰映射规则(实体类字段驼峰命名，数据表名下划线_)-->
         <property name="mapUnderscoreToCamelCase" value="false"/>
+        <!--开启mybatis日志打印-->
+        <property name="logImpl" value="org.apache.ibatis.logging.stdout.StdOutImpl"/>
     </bean>
+
     <bean id="globalConfig" class="com.baomidou.mybatisplus.core.config.GlobalConfig">
-        <!-- 关闭mybatisPlus Logo -->
+        <!--关闭mybatisPlus Logo-->
         <property name="banner" value="false"/>
     </bean>
 
 
-            <!--mybatisPlusSqlSessionFactory注入 -->
+    <!--mybatisPlusSqlSessionFactory注入 -->
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="datasource"/>
         <!-- 给pojo包下的所有类配置别名(类名) -->
         <property name="typeAliasesPackage" value="com.dlpower.crm.pojo"/>
         <!-- 使用 MybatisConfiguration -->
         <property name="configuration" ref="configuration"/>
-        <!-- 自定义全局配置 -->
+        <!--自定义全局配置-->
         <property name="globalConfig" ref="globalConfig"/>
     </bean>
 
 
-    <!-- MybatisMapper扫描器 -->
+    <!--MybatisMapper扫描器-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <!-- 指定扫描的包 -->
+        <!--指定扫描的包-->
         <property name="basePackage" value="com.dlpower.crm.mapper"/>
     </bean>
 

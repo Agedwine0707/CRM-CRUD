@@ -20,7 +20,7 @@
                 }
                 // 请求后台查询相关用户数据
                 $.ajax({
-                    url: "/user/login",
+                    url: "/user/login.do",
                     type: "post",
                     data: {
                         loginAct: $("#username").val(),

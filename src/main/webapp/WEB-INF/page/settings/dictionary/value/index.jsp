@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
 		</div>
 	</div>
 	<div style="position: relative; left: 30px; top: 20px;">
-		<table class="table table-hover">
+		<table class="table table-hover table-striped">
 			<thead>
 				<tr style="color: #B3B3B3;">
 					<td><input type="checkbox" /></td>
@@ -33,46 +34,18 @@
 				</tr>
 			</thead>
 			<tbody>
+			<c:forEach items="${listTypeValue}" var="v" varStatus="step">
 				<tr class="active">
 					<td><input type="checkbox" /></td>
-					<td>1</td>
-					<td>m</td>
-					<td>男</td>
-					<td>1</td>
-					<td>sex</td>
+					<td>${v.id}</td>
+					<td>${v.value}</td>
+					<td>${v.text}</td>
+					<td>${v.orderno}</td>
+					<td>${v.typecode}</td>
 				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>2</td>
-					<td>f</td>
-					<td>女</td>
-					<td>2</td>
-					<td>sex</td>
-				</tr>
-				<tr class="active">
-					<td><input type="checkbox" /></td>
-					<td>3</td>
-					<td>1</td>
-					<td>一级部门</td>
-					<td>1</td>
-					<td>orgType</td>
-				</tr>
-				<tr>
-					<td><input type="checkbox" /></td>
-					<td>4</td>
-					<td>2</td>
-					<td>二级部门</td>
-					<td>2</td>
-					<td>orgType</td>
-				</tr>
-				<tr class="active">
-					<td><input type="checkbox" /></td>
-					<td>5</td>
-					<td>3</td>
-					<td>三级部门</td>
-					<td>3</td>
-					<td>orgType</td>
-				</tr>
+
+			</c:forEach>
+
 			</tbody>
 		</table>
 	</div>

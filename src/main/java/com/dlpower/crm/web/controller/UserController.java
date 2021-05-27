@@ -24,9 +24,9 @@ import java.util.Map;
 public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
-    @RequestMapping("login")
+    @RequestMapping("login.do")
     public @ResponseBody Map userLogin(String loginAct, String loginPwd, Boolean exemptLogin, HttpServletRequest req, HttpServletResponse resp) {
 
         User user = userService.getUser(loginAct, loginPwd, req.getRemoteAddr());

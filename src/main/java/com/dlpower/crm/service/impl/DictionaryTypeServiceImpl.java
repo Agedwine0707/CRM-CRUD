@@ -1,48 +1,59 @@
 package com.dlpower.crm.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.dlpower.crm.mapper.DictionaryTypeMapper;
 import com.dlpower.crm.pojo.DictionaryType;
 import com.dlpower.crm.service.DictionaryTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
  *
  */
 @Service
+@Transactional
 public class DictionaryTypeServiceImpl implements DictionaryTypeService {
 
     @Autowired
     DictionaryTypeMapper typeMapper;
 
     @Override
-    public List<DictionaryType> listDictionaryType() {
+    public List<DictionaryType> listType() {
 
         return typeMapper.selectList(new QueryWrapper<>());
     }
 
     @Override
-    public void updateDictionaryType(DictionaryType type) {
-        typeMapper.insert(type);
+    public void updateType(DictionaryType type) {
+        typeMapper.updateById(type);
 
     }
 
     @Override
-    public void deleteDictionaryType(String[] ids) {
-        typeMapper.delete(new QueryWrapper<DictionaryType>().in(Arrays.toString(ids)));
+    public void deleteDictionaryType(String ids) {
+        UpdateWrapper<DictionaryType> wq = new UpdateWrapper<>();
+        String[] split = ids.split(",");
+        for (String s : split) {
+            typeMapper.deleteById(s);
+        }
     }
 
     @Override
-    public DictionaryType getDictionaryType(String code) {
+    public DictionaryType getType(String code) {
         return typeMapper.selectById(code);
     }
 
     @Override
-    public void insertDictionaryType(DictionaryType type) {
+    public void insertType(DictionaryType type) {
         typeMapper.insert(type);
+    }
+
+    @Override
+    public List<DictionaryType> getCode() {
+        return typeMapper.selectList(new QueryWrapper<>());
     }
 }

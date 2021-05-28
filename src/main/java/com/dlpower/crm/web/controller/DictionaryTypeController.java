@@ -19,13 +19,13 @@ import java.util.List;
 public class DictionaryTypeController {
 
     @Autowired
-    private DictionaryTypeService dictionaryTypeService;
+    private DictionaryTypeService typeService;
 
     @RequestMapping("listType.do")
-    public ModelAndView getDictionaryTypeAll() {
+    public ModelAndView getTypeAll() {
         ModelAndView mv = new ModelAndView();
 
-        List<DictionaryType> typeList = dictionaryTypeService.listDictionaryType();
+        List<DictionaryType> typeList = typeService.listType();
 
         mv.addObject("typeList", typeList);
         mv.setViewName("/settings/dictionary/type/index");
@@ -34,26 +34,26 @@ public class DictionaryTypeController {
 
     @RequestMapping("exist.json")
     public @ResponseBody Boolean typeExist(String code) {
-        DictionaryType dictionaryType = dictionaryTypeService.getDictionaryType(code);
+        DictionaryType dictionaryType = typeService.getType(code);
 
             return dictionaryType != null;
 
     }
 
     @RequestMapping("save.do")
-    public String saveDictionaryType(DictionaryType type) {
-        dictionaryTypeService.insertDictionaryType(type);
+    public String saveType(DictionaryType type) {
+        typeService.insertType(type);
 
         return "redirect:/type/listType.do";
     }
 
     @RequestMapping("edit.html")
-    public ModelAndView editDictionaryTypeView(String code) {
+    public ModelAndView editTypeView(String code) {
         ModelAndView mv = new ModelAndView();
 
-        DictionaryType dictionaryType = dictionaryTypeService.getDictionaryType(code);
+        DictionaryType type = typeService.getType(code);
 
-        mv.addObject("dictionaryType", dictionaryType);
+        mv.addObject("type", type);
         mv.setViewName("settings/dictionary/type/edit");
 
         return mv;
@@ -61,18 +61,26 @@ public class DictionaryTypeController {
 
 
     @RequestMapping("edit.do")
-    public String editDictionaryType(DictionaryType type) {
-        dictionaryTypeService.updateDictionaryType(type);
+    public String editType(DictionaryType type) {
+        typeService.updateType(type);
 
-        return "redirect:/type/index.html";
+        return "redirect:/type/listType.do";
     }
 
 
     @RequestMapping("delete.do")
-    public String deleteDictionaryType(String[] ids) {
-        dictionaryTypeService.deleteDictionaryType(ids);
+    public String deleteType(String ids) {
+        typeService.deleteDictionaryType(ids);
 
-        return "redirect:/type/index.html";
+        return "redirect:/type/listType.do";
     }
+
+    @RequestMapping("getCode.do")
+    public @ResponseBody List<DictionaryType> getCode() {
+        return typeService.getCode();
+    }
+
+
+
 
 }

@@ -32,7 +32,8 @@
 		
 		//展示市场活动页面
 		window.open("/type/listType.do","workareaFrame");
-		
+
+
 	});
 	
 </script>

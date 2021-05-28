@@ -1,8 +1,7 @@
 package com.dlpower;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.dlpower.crm.mapper.DictionaryTypeMapper;
-import com.dlpower.crm.pojo.DictionaryType;
+import com.dlpower.crm.mapper.DictionaryValueMapper;
+import com.dlpower.crm.pojo.DictionaryValue;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +18,12 @@ import java.util.List;
 @RunWith(SpringJUnit4ClassRunner.class)
 public class DataTest {
     @Autowired
-    DictionaryTypeMapper typeMapper;
+    DictionaryValueMapper typeMapper;
 
     @Test
     public void dateTest() {
-        QueryWrapper<DictionaryType> qw = new QueryWrapper<>();
-        qw.isNotNull("code");
-        List<DictionaryType> typeList = typeMapper.selectList(qw);
+
+        List<DictionaryValue> typeList = typeMapper.getDictionaryValueAll();
         typeList.forEach(System.out::println);
     }
 }

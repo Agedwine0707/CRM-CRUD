@@ -37,12 +37,14 @@
     <!--mybatisPlusSqlSessionFactory注入 -->
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="datasource"/>
-        <!-- 给pojo包下的所有类配置别名(类名) -->
+        <!--给pojo包下的所有类配置别名(类名)-->
         <property name="typeAliasesPackage" value="com.dlpower.crm.pojo"/>
-        <!-- 使用 MybatisConfiguration -->
+        <!--使用 Mybatis配置-->
         <property name="configuration" ref="configuration"/>
         <!--自定义全局配置-->
         <property name="globalConfig" ref="globalConfig"/>
+        <!--指定mapper文件位置-->
+        <property name="mapperLocations" value="classpath:/mapper/*.xml"/>
     </bean>
 
 

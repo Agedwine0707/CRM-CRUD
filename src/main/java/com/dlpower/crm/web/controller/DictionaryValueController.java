@@ -23,7 +23,7 @@ public class DictionaryValueController {
     private DictionaryValueService typeValue;
 
     @RequestMapping("listValue.do")
-    public ModelAndView listDictionaryValue() {
+    public ModelAndView listValue() {
         ModelAndView mv = new ModelAndView();
 
         List<DictionaryValue> valueAll = typeValue.getDictionaryValueAll();
@@ -35,4 +35,29 @@ public class DictionaryValueController {
 
     }
 
+    @RequestMapping("save.do")
+    public String saveValue(DictionaryValue value) {
+        typeValue.saveValue(value);
+        return "redirect:/value/listValue.do";
+    }
+
+    @RequestMapping("edit.html")
+    public ModelAndView editView(String id, ModelAndView mv) {
+        DictionaryValue value = typeValue.getValueById(id);
+        mv.addObject("value", value);
+        mv.setViewName("/settings/dictionary/value/edit");
+        return mv;
+    }
+
+    @RequestMapping("update.do")
+    public String updateValue(DictionaryValue value) {
+        typeValue.updateValueById(value);
+        return "redirect:/value/listValue.do";
+    }
+
+    @RequestMapping("delete.do")
+    public String deleteValue(String ids) {
+        typeValue.delectByids(ids);
+        return "redirect:/value/listValue.do";
+    }
 }

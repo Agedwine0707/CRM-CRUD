@@ -9,13 +9,15 @@ import java.util.List;
 */
 public interface DictionaryTypeService  {
 
-    List<DictionaryType> listDictionaryType();
+    List<DictionaryType> listType();
 
-    void updateDictionaryType(DictionaryType type);
+    void updateType(DictionaryType type);
 
-    void deleteDictionaryType(String[] ids);
+    void deleteDictionaryType(String ids);
 
-    DictionaryType getDictionaryType(String code);
+    DictionaryType getType(String code);
 
-    void insertDictionaryType(DictionaryType type);
+    void insertType(DictionaryType type);
+
+    List<DictionaryType> getCode();
 }

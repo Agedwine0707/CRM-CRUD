@@ -8,13 +8,26 @@
     <link href="/static/jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css"
           rel="stylesheet"/>
 
-    <script type="text/javascript" src="/static/jquery/jquery-1.11.1-min.js"></script>
+    <script type="text/javascript" src="/static/jquery/js/jquery-1.11.1-min.js"></script>
     <script type="text/javascript" src="/static/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 
 	<script>
 		jQuery(function ($) {
 
 			$("#updateBtn").click(function () {
+                if (!$.trim($(":input[name=value]").val())) {
+                    alert("字典值不能为空");
+                    return;
+                }
+                if (!$.trim($(":input[name=text]").val())) {
+                    alert("文本不能为空");
+                    return;
+                }
+                if (!/[\d]/.test($(":input[name=orderno]").val())) {
+                    alert("排序号请输入一个1到9的有效数字");
+                    return;
+                }
+
 				$("#updateForm").submit();
 			});
 		});

@@ -108,7 +108,7 @@ $.fn.ajaxSubmit = function(options) {
         options = {};
     }
 
-    method = options.type || this.attr2('method');
+    method = options.type || this.attr('method');
     action = options.url  || this.attr2('action');
 
     url = (typeof action === 'string') ? $.trim(action) : '';

@@ -7,7 +7,7 @@
 <link href="/static/jquery/bootstrap_3.3.0/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 <link href="/static/jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css" rel="stylesheet" />
 
-<script type="text/javascript" src="/static/jquery/jquery-1.11.1-min.js"></script>
+<script type="text/javascript" src="/static/jquery/js/jquery-1.11.1-min.js"></script>
 <script type="text/javascript" src="/static/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 	<script>
 		jQuery(function ($){
@@ -27,6 +27,10 @@
 					alert("名称不能为空");
 					return;
 				}
+				if (!$.trim($("#describe").val())) {
+					alert("描述不能为空");
+					return;
+				}
 				// 验证当前编码是否存在
 				$.ajax({
 					url: "/type/exist.json?code="+code,
@@ -37,7 +41,7 @@
 						}
 						$("form").submit();
 					}
-				})
+				});
 
 			})
 		})

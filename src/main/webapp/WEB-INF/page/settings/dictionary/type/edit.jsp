@@ -8,19 +8,22 @@
     <link href="/static/jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css"
           rel="stylesheet"/>
     <script src="/static/jquery/jquery-form.js"></script>
-    <script type="text/javascript" src="/static/jquery/jquery-1.11.1-min.js"></script>
+    <script type="text/javascript" src="/static/jquery/js/jquery-1.11.1-min.js"></script>
     <script type="text/javascript" src="/static/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 
     <script>
         jQuery(function ($) {
-         /*   $("#editForm").ajaxForm(function (result) {
-				if (result) {
-					alert("修改成功！");
-				}
-                location = "/type/listType.do";
-            })
-*/
+
             $("#editBtn").click(function () {
+                if (!$(":input[name=name]").val()) {
+                    alert("名称不能为空！");
+                    return;
+                }
+                if (!$(":input[name=description]").val()) {
+                    alert("描述不能为空");
+                    return;
+                }
+
                 $("#editForm").submit();
             })
         })

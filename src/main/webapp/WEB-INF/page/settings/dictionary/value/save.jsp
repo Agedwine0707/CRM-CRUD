@@ -8,7 +8,7 @@
     <link href="/static/jquery/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" type="text/css"
           rel="stylesheet"/>
 
-    <script type="text/javascript" src="/static/jquery/jquery-1.11.1-min.js"></script>
+    <script type="text/javascript" src="/static/jquery/js/jquery-1.11.1-min.js"></script>
     <script type="text/javascript" src="/static/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 
     <script>
@@ -40,6 +40,10 @@
                 }
                 if (!$.trim($("#create-text").val())) {
                     alert("请填写文本值，必填项！");
+                }
+                if (!/[\d]/.test($(":input[name=orderno]").val())) {
+                    alert("排序号请输入一个1到9的有效数字");
+                    return;
                 }
                 $("#form").submit();
             });

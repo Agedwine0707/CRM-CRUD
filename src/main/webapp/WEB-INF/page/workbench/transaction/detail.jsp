@@ -19,7 +19,7 @@
 }
 </style>
 	
-<script type="text/javascript" src="/static/jquery/jquery-1.11.1-min.js"></script>
+<script type="text/javascript" src="/static/jquery/js/jquery-1.11.1-min.js"></script>
 <script type="text/javascript" src="/static/jquery/bootstrap_3.3.0/js/bootstrap.min.js"></script>
 
 <script type="text/javascript">

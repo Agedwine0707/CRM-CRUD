@@ -28,12 +28,14 @@ public class DictionaryTypeServiceImpl implements DictionaryTypeService {
     }
 
     @Override
+    @Transactional
     public void updateType(DictionaryType type) {
         typeMapper.updateById(type);
 
     }
 
     @Override
+    @Transactional
     public void deleteDictionaryType(String ids) {
         UpdateWrapper<DictionaryType> wq = new UpdateWrapper<>();
         String[] split = ids.split(",");
@@ -48,6 +50,7 @@ public class DictionaryTypeServiceImpl implements DictionaryTypeService {
     }
 
     @Override
+    @Transactional
     public void insertType(DictionaryType type) {
         typeMapper.insert(type);
     }

@@ -23,7 +23,7 @@ public class DataTest {
     @Test
     public void dateTest() {
 
-        List<DictionaryValue> typeList = typeMapper.getDictionaryValueAll();
-        typeList.forEach(System.out::println);
+        List<DictionaryValue> typeList = typeMapper.selectAll();
+        System.out.println(typeList);
     }
 }

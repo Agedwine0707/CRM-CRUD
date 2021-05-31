@@ -40,6 +40,11 @@ public class DictionaryValue implements Serializable {
      */
     private String typecode;
 
+    /**
+     * 字典值对应的字典类型
+     */
+    DictionaryType type;
+
     @TableField(exist = false)
     private static final long serialVersionUID = 1L;
 }

@@ -36,6 +36,7 @@
 				}).get();
 				if (ids.length !== 1) {
 					alert("必须且只能选中一项！");
+					$("#editBtn").blur();
 					return;
 				}
 				location = "/type/edit.html?code=" + ids[0];

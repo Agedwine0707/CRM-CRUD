@@ -28,6 +28,7 @@ public class DictionaryValueServiceImpl implements DictionaryValueService{
     }
 
     @Override
+    @Transactional
     public void saveValue(DictionaryValue value) {
         value.setId(UUIDUtil.getUUID());
         typeValueMapper.insert(value);
@@ -39,6 +40,7 @@ public class DictionaryValueServiceImpl implements DictionaryValueService{
     }
 
     @Override
+    @Transactional
     public void delectByids(String ids) {
         String[] split = ids.split(",");
         for (String s : split) {
@@ -47,6 +49,7 @@ public class DictionaryValueServiceImpl implements DictionaryValueService{
     }
 
     @Override
+    @Transactional
     public void updateValueById(DictionaryValue value) {
         typeValueMapper.updateById(value);
     }

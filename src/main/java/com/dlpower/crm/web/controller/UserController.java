@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -78,5 +79,23 @@ public class UserController {
         }};
     }
 
+    @RequestMapping("listUser.json")
+    public @ResponseBody List<User> listUser() {
+        return userService.getAllUser();
+    }
 
+    @RequestMapping("save.do")
+    public @ResponseBody Map saveUser(User user){
+        return userService.saveUser(user);
+    }
+
+    @RequestMapping("getExists.json")
+    public @ResponseBody Boolean getExist(String act) {
+        return userService.getUserByAct(act);
+    }
+
+    @RequestMapping("delete.do")
+    public @ResponseBody Map deleteUser(String ids) {
+       return userService.deleteByids(ids);
+    }
 }

@@ -2,6 +2,7 @@ package com.dlpower.crm.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.dlpower.crm.constant.Constant;
+import com.dlpower.crm.constant.Result;
 import com.dlpower.crm.exception.LoginException;
 import com.dlpower.crm.mapper.UserMapper;
 import com.dlpower.crm.pojo.User;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author chenlanjiang
@@ -131,5 +134,41 @@ public class UserServiceImpl implements UserService {
 
         int resultRow = userMapper.updateById(user);
         return resultRow >= 1;
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        return userMapper.selectList(new QueryWrapper<>());
+    }
+
+    @Override
+    @Transactional
+    public Map saveUser(User user) {
+        int insert = userMapper.insert(user);
+        if (insert >= 1) {
+            return Result.returnTrue();
+        }
+        throw new RuntimeException("添加失败");
+    }
+
+    @Override
+    public Boolean getUserByAct(String act) {
+        User user = userMapper.selectOne(new QueryWrapper<User>().eq("loginact", act));
+        return user == null;
+    }
+
+    @Override
+    @Transactional
+    public Map deleteByids(String ids) {
+
+        try {
+            String[] split = ids.split(",");
+            for (String s : split) {
+                userMapper.deleteById(s);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Result.returnTrue();
     }
 }

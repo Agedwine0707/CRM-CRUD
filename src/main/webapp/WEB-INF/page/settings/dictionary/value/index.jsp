@@ -14,7 +14,7 @@
 
             // 如果选中的checkbox和已有的checkbox数量相同将全选框的状态设置为选中
             $(":checkbox[name=id]").click(function () {
-                $("#selectAll").prop("checked", $(":checkbox[name=id]").size() === $(":checkbox[name=id]").size());
+                $("#selectAll").prop("checked", $(":checkbox[name=id]").size() == $(":checkbox[name=id]:checked").size());
             });
 
             $("#delBtn").click(function () {

@@ -20,21 +20,25 @@
                     success: function (data) {
                         let html = "";
                         $(data).each(function (index) {
-                            html += '<tr class="active">';
-                            html += '<td><input type="checkbox" name="id" value="'+this.id+'" /></td>';
-                            html += '<td>' + (index+1) + '</td>';
-                            html += '<td><a  href="detail.html">' + this.loginact + '</a></td>';
-                            html += '<td>' + this.name + ' </td>';
-                            html += '<td>' + this.deptid + ' </td>';
-                            html += '<td>' + this.email + ' </td>';
-                            html += '<td>' + this.expireTime + '     </td>';
-                            html += '<td>' + this.allowips + ' </td>';
-                            html += '<td><a href="#" style="text-decoration: none;">' + this.lockstatus+ '</a></td>';
-                            html += '<td>admin</td>';
-                            html += '<td>' + this.createtime + '</td>';
-                            html += '<td>admin</td>';
-                            html += '<td>' + this.edittime + '</td>';
-                            html += '</tr>';
+                            html += `<tr class="active">;
+                                     <td><input type="checkbox" name="id" value="` + this.id + `" /></td>
+                                     <td>` + (index + 1) + `</td>
+                                     <td><a  href="detail.html">` + this.loginact + `</a></td>
+                                     <td>` + this.name + ` </td>
+                                     <td>` + this.deptid + ` </td>
+                                     <td>` + this.email + ` </td>
+                                     <td>` + this.expiretime + `     </td>
+                                     <td>` + this.allowips + ` </td>
+                                     <td><a href="#" style="text-decoration: none;">`
+
+                                     + (this.lockstatus=="1"?"锁定":"启用") +
+
+                                    `</a></td>
+                                     <td>admin</td>
+                                     <td>` + this.createtime + `</td>
+                                     <td>admin</td>
+                                     <td>` + this.edittime + `</td>
+                                     </tr>`;
 
                         });
                         $("#tbody").html(html);
@@ -127,7 +131,6 @@
             })
 
 
-
             // 让单选框和全选框的选中状态一致
             $("#selectAll").click(function () {
                 $(":checkbox[name=id]").prop("checked", this.checked);
@@ -148,15 +151,15 @@
                     return;
                 }
                 if (!confirm("确认删除吗？")) return;
-                 $.ajax({
-                     url : "/user/delete.do?ids=" + ids,
-                     success:function (result){
-                         if (result.success){
-                             alert("删除成功");
-                         }
-                         load();
-                     }
-                 })
+                $.ajax({
+                    url: "/user/delete.do?ids=" + ids,
+                    success: function (result) {
+                        if (result.success) {
+                            alert("删除成功");
+                        }
+                        load();
+                    }
+                })
 
             })
 
@@ -183,7 +186,7 @@
                         <label for="create-loginActNo" class="col-sm-2 control-label">登录帐号<span
                                 style="font-size: 15px; color: red;">*</span></label>
                         <div class="col-sm-10" style="width: 300px;">
-                            <input name="loginAct" type="text" class="form-control" id="create-loginActNo">
+                            <input name="loginact" type="text" class="form-control" id="create-loginActNo">
                         </div>
                         <label for="create-username" class="col-sm-2 control-label">用户姓名</label>
                         <div class="col-sm-10" style="width: 300px;">
@@ -312,7 +315,8 @@
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createUserModal"><span
                 class="glyphicon glyphicon-plus"></span> 创建
         </button>
-        <button type="button" id="delBtn" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
+        <button type="button" id="delBtn" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除
+        </button>
     </div>
     <div class="btn-group" style="position: relative; top: 18%; left: 5px;">
         <button type="button" class="btn btn-default">设置显示字段</button>

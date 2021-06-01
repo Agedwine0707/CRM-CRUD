@@ -26,6 +26,16 @@ public class CRMExceptionHandler {
         }};
     }
 
+    // 运行时异常
+    @ExceptionHandler(RuntimeException.class)
+    @ResponseBody
+    public Map<String, Object> runTimeExceptionHandler(Exception e) {
+        return new HashMap() {{
+            put("success", false);
+            put("message", e.getMessage());
+        }};
+    }
+
 
 
 }

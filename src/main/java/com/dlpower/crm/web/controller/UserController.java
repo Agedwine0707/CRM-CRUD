@@ -28,13 +28,14 @@ public class UserController {
     private UserService userService;
 
     @RequestMapping("login.do")
-    public @ResponseBody Map userLogin(String loginAct, String loginPwd, Boolean exemptLogin, HttpServletRequest req, HttpServletResponse resp) {
+    public @ResponseBody
+    Map userLogin(String loginAct, String loginPwd, Boolean exemptLogin, HttpServletRequest req, HttpServletResponse resp) {
 
         User user = userService.getUser(loginAct, loginPwd, req.getRemoteAddr());
 
         // 十天免登录,将用户信息放到cookie
-        if (exemptLogin){
-            Cookie c1 = new Cookie(Constant.COOKIE_USER_ACT,user.getId());
+        if (exemptLogin) {
+            Cookie c1 = new Cookie(Constant.COOKIE_USER_ACT, user.getId());
             c1.setMaxAge(60 * 60 * 24 * 10);
             c1.setPath("/");
             Cookie c2 = new Cookie(Constant.COOKIE_USER_PWD, user.getLoginpwd());
@@ -47,9 +48,9 @@ public class UserController {
 
         // 将用户信息保存到session中
         HttpSession session = req.getSession();
-        session.setAttribute(Constant.LOGIN_USER,user);
+        session.setAttribute(Constant.LOGIN_USER, user);
 
-        return new HashMap(){{
+        return new HashMap() {{
             put("success", true);
         }};
 
@@ -71,7 +72,8 @@ public class UserController {
     }
 
     @RequestMapping("updatePwd")
-    public @ResponseBody Map updatePwd(String id, String confirmPwd) {
+    public @ResponseBody
+    Map updatePwd(String id, String confirmPwd) {
         Boolean result = userService.updatePwd(id, confirmPwd);
 
         return new HashMap() {{
@@ -80,22 +82,26 @@ public class UserController {
     }
 
     @RequestMapping("listUser.json")
-    public @ResponseBody List<User> listUser() {
+    public @ResponseBody
+    List<User> listUser() {
         return userService.getAllUser();
     }
 
     @RequestMapping("save.do")
-    public @ResponseBody Map saveUser(User user){
+    public @ResponseBody
+    Map saveUser(User user) {
         return userService.saveUser(user);
     }
 
     @RequestMapping("getExists.json")
-    public @ResponseBody Boolean getExist(String act) {
+    public @ResponseBody
+    Boolean getExist(String act) {
         return userService.getUserByAct(act);
     }
 
     @RequestMapping("delete.do")
-    public @ResponseBody Map deleteUser(String ids) {
-       return userService.deleteByids(ids);
+    public @ResponseBody
+    Map deleteUser(String ids) {
+        return userService.deleteByids(ids);
     }
 }

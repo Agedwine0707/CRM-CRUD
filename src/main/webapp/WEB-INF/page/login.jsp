@@ -30,11 +30,7 @@
                     // 请求成功后执行的方法
                     success: function (result) {
                         if (result.success) {
-                            location = "/workbench/index.html";
-                        }
-                        // 如果返回值里面有信息就打印
-                        if (result.message) {
-                            alert(result.message);
+                            location = "/workbench/index.html" ;
                         }
                     }
                 })

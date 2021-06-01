@@ -144,9 +144,11 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public Map saveUser(User user) {
+        // 添加用户的时间
+        user.setCreatetime(DateTimeUtil.getSysTime());
         int insert = userMapper.insert(user);
         if (insert >= 1) {
-            return Result.returnTrue();
+            return Result.SUCCESS;
         }
         throw new RuntimeException("添加失败");
     }
@@ -169,6 +171,6 @@ public class UserServiceImpl implements UserService {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return Result.returnTrue();
+        return Result.SUCCESS;
     }
 }

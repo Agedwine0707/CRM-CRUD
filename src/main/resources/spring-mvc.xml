@@ -33,7 +33,7 @@
             <mvc:mapping path="/**"/>
             <mvc:exclude-mapping path="/static/**"/>
             <mvc:exclude-mapping path="/login.html"/>
-            <mvc:exclude-mapping path="/user/login"/>
+            <mvc:exclude-mapping path="/user/login.do"/>
             <mvc:exclude-mapping path="/"/>
             <bean class="com.dlpower.crm.web.interceptor.LoginInterceptor"/>
         </mvc:interceptor>

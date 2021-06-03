@@ -60,4 +60,9 @@ public class ActivityServiceImpl implements ActivityService {
         }
         throw new RuntimeException("添加用户失败");
     }
+
+    @Override
+    public void saveList(List<Activity> list) {
+        activityMapper.saveList(list);
+    }
 }

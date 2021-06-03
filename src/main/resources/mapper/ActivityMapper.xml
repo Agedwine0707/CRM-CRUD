@@ -4,17 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.dlpower.crm.mapper.ActivityMapper">
 
-    <!-- 抽取的字段列表 -->
-    <sql id="base_column">
-        id,owner,name,
-        startDate,endDate,cost,
-        description,createTime,createBy,
-        editTime,editBy
-    </sql>
 
     <!-- 根据条件对活动类别模糊查询 -->
     <select id="searchByMap" resultType="activity">
-        select <include refid="base_column"/> from tbl_activity
+        select * from tbl_activity
         <where>
             <if test="name != null and name != '' ">
                 and name like concat('%',#{name},'%')
@@ -30,4 +23,24 @@
             </if>
         </where>
     </select>
+
+    <insert id="saveList">
+        insert into tbl_activity  values
+
+        <foreach collection="list" item="act"  separator=",">
+            (
+            #{act.id},
+            #{act.owner},
+            #{act.name},
+            #{act.startDate},
+            #{act.endDate},
+            #{act.cost},
+            #{act.description},
+            #{act.createTime},
+            #{act.createBy},
+            #{act.editTime},
+            #{act.editBy}
+            )
+        </foreach>
+    </insert>
 </mapper>

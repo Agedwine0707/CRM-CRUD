@@ -20,6 +20,7 @@ public class CRMExceptionHandler {
     @ExceptionHandler(LoginException.class)
     @ResponseBody
     public Map<String, Object> loginExceptionHandler(Exception e) {
+
         return new HashMap() {{
             put("success", false);
             put("message", e.getMessage());
@@ -30,6 +31,7 @@ public class CRMExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
     public Map<String, Object> runTimeExceptionHandler(Exception e) {
+        e.printStackTrace();
         return new HashMap() {{
             put("success", false);
             put("message", e.getMessage());

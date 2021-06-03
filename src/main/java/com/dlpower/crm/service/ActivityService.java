@@ -22,4 +22,6 @@ public interface ActivityService{
     List searchList(Map searchMap);
 
     Map save(Activity activity);
+
+    void saveList(List<Activity> list);
 }

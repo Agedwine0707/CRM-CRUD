@@ -141,6 +141,39 @@
                 })
             })
 
+            // 导出Excel活动按钮
+            $("#exportExcel").click(function (){
+                location = "/activity/export.do";
+            })
+
+            // 导入excel
+            $("#importBtn").click(function (){
+                var data = new FormData();
+                // 选择的文件，是一个数组
+                var files = $("#upFile").prop("files");
+
+                data.append("upFile", files[0]);
+
+                $.ajax({
+                    url: "/activity/import.do",
+                    type: "post",
+                    // 禁止对上传的数据进行任何处理
+                    contentType: false,processData:false,
+                    data: data,
+                    success:function (data) {
+                        if (data.success){
+                            // 让当前显示状态下的窗口关闭
+                            $("#importActivityModal").modal("hide");
+                            // 根据查询条件更新当前活动列表
+                            $("#searchForm").submit();
+                        }
+                        if (data.msg) {
+                            alert(data.msg);
+                        }
+                    }
+                })
+            })
+
 
         })
 
@@ -299,7 +332,7 @@
                     请选择要上传的文件：<small style="color: gray;">[仅支持.xls或.xlsx格式]</small>
                 </div>
                 <div style="position: relative;top: 40px; left: 50px;">
-                    <input type="file">
+                    <input type="file" id="upFile">
                 </div>
                 <div style="position: relative; width: 400px; height: 320px; left: 45% ; top: -40px;">
                     <h3>重要提示</h3>
@@ -317,7 +350,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                <button type="button" class="btn btn-primary" data-dismiss="modal">导入</button>
+                <button type="button" id="importBtn" class="btn btn-primary" data-dismiss="modal">导入</button>
             </div>
         </div>
     </div>
@@ -386,7 +419,7 @@
                 <button type="button" class="btn btn-default" data-toggle="modal" data-target="#importActivityModal">
                     <span class="glyphicon glyphicon-import"></span> 导入
                 </button>
-                <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-export"></span> 导出
+                <button type="button" class="btn btn-default" id="exportExcel"><span class="glyphicon glyphicon-export"></span> 导出
                 </button>
             </div>
         </div>
